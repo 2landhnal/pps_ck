@@ -54,6 +54,8 @@ def spline3(k,x0):
         return m
     m=tinhM(x,y,n)
     if k==1:
+        print(f"m: {m}")
+        print(f"h: {h}")
         for j in range(1,n+1):
             print('S3' +'['+ str(x[j-1])+','+str(x[j])+']'+'= ' + str(round(m[j - 1] / (6 * h[j - 1]),3)) + '(' + str(x[j]) + '- x)^3' +
                   '+ ' + str(round(m[j] / (h[j - 1] * 6),3)) + '(x-' + str(x[j - 1]) + ')^3' +

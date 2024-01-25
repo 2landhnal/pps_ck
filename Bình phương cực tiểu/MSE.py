@@ -82,6 +82,9 @@ def pack4(x) :
         change.append(temp1)
     return np.array(change)
 
+def pack5():
+  return theta.T@y
+
 #pack2 : nhân ma trận nghich dao voi ma tran theta 
 def pack2(theta):
     return theta.T@theta
@@ -130,13 +133,16 @@ def pack3(theta,M,y):
 u=[u0,u11]
 
 theta=pack1(u,x)
-print(f"M: {theta}")
+print(f"Theta: {theta}")
 
 M=pack2(theta)
-print(f"Mt.M: {M}")
+print(f"M = theta.T * theta: \n{M}")
+
+b=pack5()
+print(f"b = theta.T * y: \n{b}")
 
 a=pack3(theta,M,y)
-print('Ma tran he so la: ')
+print('Ma tran he so X la: (Mx = b)')
 print(a)
 
 def find_y(x,u,a):
