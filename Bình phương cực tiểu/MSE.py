@@ -21,10 +21,8 @@ with open ('input.txt','r') as f:
     #print(line)
     try:
       (_x,_y)=line.split(' ')
-      # x.append(float(_x))
-      # y.append(float(_y))
-      x.append(float(_y) + 3)
-      y.append(pow(float(_x), 2))
+      x.append(float(_x))
+      y.append(float(_y))
     except ValueError:
       check=False
       print("Oops!Check Input,plz...")
@@ -130,7 +128,7 @@ def vienquanh_inverse(A):
 def pack3(theta,M,y):
     return vienquanh_inverse(M)@theta.T@y
 
-u=[u0,u11]
+u=[u1,u5]
 
 theta=pack1(u,x)
 print(f"Theta: {theta}")
