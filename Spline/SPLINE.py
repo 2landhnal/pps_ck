@@ -2,8 +2,6 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-#Nhập các mốc muốn tính
-a = [1, 2]
 def data():
     global x,y,n
     x = []
@@ -20,11 +18,6 @@ def data():
                 if check:
                     x.append(xt)
                     y.append(yt)
-    
-    h1 = x[1] - x[0]
-    for i in range(7):
-        x.append(x[-1] + h1)
-        y.append(math.sin(x[-1]))
 
     x = np.asarray(x)
     y = np.asarray(y)
@@ -72,9 +65,6 @@ def spline3(k,x0):
                   '+ ' + str(round(m[j] / (h[j - 1] * 6),3)) + '(x-' + str(x[j - 1]) + ')^3' +
                   '+ ' + str(round((1 / h[j - 1]) * (y[j - 1] - m[j - 1] / 6 * h[j - 1] ** 2),3)) + '(' + str(x[j]) + '-x)' +
                   '+ ' + str(round((y[j] - (m[j] / 6) * h[j - 1] ** 2) / h[j - 1],3)) + '(x-' + str(x[j - 1]) + ')')
-        for j in a:
-            if(j >= x[j-1] and j <= x[j]):
-                print(f'S3[{j}] = ' + str((round(m[j - 1] / (6 * h[j - 1]),3)) * ((x[j]) - j)**3 + (round(m[j] / (h[j - 1] * 6),3)) * (j - x[j - 1])**3 + (round((1 / h[j - 1]) * (y[j - 1] - m[j - 1] / 6 * h[j - 1] ** 2),3)) * ((x[j]) - j) + (round((y[j] - (m[j] / 6) * h[j - 1] ** 2) / h[j - 1],3)) * (j - (x[j - 1]))))
     for i in range(1,n+1):
         if x[i-1]<=x0 and x0<=x[i]:
             s3=m[i-1]/(6*h[i-1])*(x[i]-x0)**3+m[i]/(h[i-1]*6)*(x0-x[i-1])**3+(1/h[i-1])*(y[i-1]-m[i-1]/6*h[i-1]**2)*(x[i]-x0) +(y[i]-(m[i]/6)*h[i-1]**2)*(x0-x[i-1])/h[i-1]
@@ -114,6 +104,15 @@ spline1(1,x[0])
 print("========================================================================================")
 print("Cac da thuc spline bac 2")
 spline2(1,x[0])
+
+a = float(input("Nhập giá trị cần tính: "))
+print('Giá trị xấp xỉ đa thức theo spline bậc 3 tại ' +
+      str(a) + ' là: '+str(spline3(0, a)))
+print('Giá trị xấp xỉ đa thức theo spline bậc 2 tại ' +
+      str(a) + ' là: '+str(spline2(0, a)))
+print('Giá trị xấp xỉ đa thức theo spline bậc 1 tại ' +
+      str(a) + ' là: '+str(spline1(0, a)))
+
 x0=np.linspace(x[0], x[n], 1000)
 y3=[]
 y1=[]
